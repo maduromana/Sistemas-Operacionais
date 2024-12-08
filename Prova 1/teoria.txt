@@ -1,0 +1,31 @@
+>>> Um processo é uma instância de um programa em execução, possuindo um contexto e executando suas instruções de aneira sequencial.
+
+>>> Processos não compartilham diretamente o espaço de endereçamento de memória. Cada processo possui seu proprio espaço de endereçamento independente, o que isola o contexto de um processo do outro, rotegendo a integridade dos dados e prevenindo conflitos de acesso entre processos concorrentes.
+
+>>> Diferenaça entre processos e thereads está principalmente no modo como cada um utiliza recursos e compartilha dados, Os processos são protegidos entre si. Ou seja, um processo não consegue acessar a memória de outro diretamente, o que garante segurança e estabilidade no sistema.Múltiplas threads de um mesmo processo compartilham o mesmo espaço de endereçamento de memória, incluindo dados, código e recursos alocados para o processo.
+As threads permitem a execução de múltiplas tarefas dentro do mesmo processo de forma concorrente, compartilhando dados de forma eficiente, pois têm acesso direto à memória comum do processo pai.
+
+>>> O escalonador de processo de curto prazo é responsável por selecionar qual dos processos na fila de prontos será o próximo a ser executado pela CPU. Esse tipo de escalonador age frequentemente e precisa ser muito eficiente, pois determina a ordem e a prioridade de execução dos processos, afetando diretamente a utilização da CPU, tempo de resposta e desempenho do sistema.
+
+>>> O escalonador de curto prazo realiza trocas de estado específicas:
+    De Pronto para Em Execução: quando um processo é selecionado para utilizar a CPU.
+    De Em Execução para Pronto: quando um processo é interrompido (por uma interrupção de tempo ou preempção) e devolvido à fila de prontos.
+    De Em Execução para Espera: quando um processo faz uma requisição de E/S e precisa aguardar, saindo da execução.
+    De Espera para Pronto: quando um processo em espera finaliza a operação de E/S e volta para a fila de prontos, aguardando pela CPU.
+    
+>>> Exemplos de Políticas de Escalonamento de Curto Prazo
+
+    First-Come, First-Served (FCFS): executa os processos na ordem em que chegam à fila de prontos, sem preempção. É simples, mas pode resultar em longos tempos de espera para processos de maior duração.
+
+    Shortest Job Next (SJN): seleciona o processo com o menor tempo de execução estimado. Esse método é ótimo para tempo médio de espera, mas não é preemptivo.
+
+    Round-Robin (RR): cada processo recebe um tempo fixo (quantum) para execução. Se o processo não termina nesse tempo, é colocado de volta no final da fila. Esse método é amplamente usado em sistemas de tempo compartilhado e busca minimizar o tempo de resposta.
+
+    Prioridade: cada processo é associado a uma prioridade, e o escalonador seleciona o processo de maior prioridade. Pode ser preemptivo ou não, dependendo do sistema.
+
+Essas políticas de escalonamento de curto prazo têm como objetivo equilibrar o uso eficiente da CPU e a resposta rápida aos processos, adaptando-se às necessidades e características do sistema operacional e dos processos em execução.
+
+>>> O comando execv() é uma função da biblioteca POSIX usada para substituir o programa em execução de um processo por um novo programa. A função faz parte da família de comandos exec (como execve, execl, execvp, etc.), e sua execução permite que o processo atual passe a executar um novo código, especificado pelo programa indicado no comando. Com execv, o processo mantém o mesmo identificador de processo (PID), mas todo o conteúdo de sua memória é substituído pelo novo programa.
+
+>>>> A técnica de multiprogramação permite que a CPU seja utilizada de forma mais eficiente, aumentando sua ocupação e evitando que ela fique ociosa. Em um sistema multiprogramado, o sistema operacional gerencia múltiplos processos ao mesmo tempo e alterna rapidamente entre eles. Dessa forma, quando um processo está aguardando (por exemplo, esperando uma operação de entrada/saída), a CPU não fica parada; em vez disso, passa a executar outro processo que esteja pronto.
+Esse revezamento contínuo entre processos maximiza o tempo em que a CPU está ativa, aumentando sua utilização. Assim, ao invés de esperar que cada processo complete uma tarefa antes de iniciar o próximo, a multiprogramação permite que a CPU sempre tenha trabalho para fazer, o que resulta em uma execução mais rápida e eficiente dos processos no sistema.
